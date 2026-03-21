@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Appointment</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">Doctor's Appointment System</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="#">Doctors</a>
+        <a href="#">About</a>
+        <a href="{% url 'signup' %}">Login</a>
+
+        {% if user.is_authenticated %}
+            <div class="profile">
+                <div class="circle">
+                    {{ user.username|first|upper }}
+                </div>
+                <span>{{ user.username }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+
+</div>
+
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<!-- Content Block -->
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
