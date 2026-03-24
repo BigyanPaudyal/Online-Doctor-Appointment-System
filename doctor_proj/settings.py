@@ -34,13 +34,21 @@ INSTALLED_APPS = [
     'doctors',
     'hospitals',
     # 'hospitals.apps.HospitalsConfig',
+    'AboutUs.apps.AboutusConfig',
+    # 'doctors.apps.DoctorsConfig',
+    # 'hospitals.apps.HospitalsConfig',
     'HomePage.apps.HomepageConfig',
+    'appointment',
+    'patients',
+    
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 ]
 
 MIDDLEWARE = [

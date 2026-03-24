@@ -6,7 +6,6 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 
 # from django.http import HttpResponse;
-
 # def DoctorPage(Request):
 #     return HttpResponse("<h1> Doctors Page </h1>")
 
@@ -50,3 +49,33 @@ def login_view(request):
         else:
             messages.error(request, "Invalid credentials")
     return render(request, 'login.html')
+
+docinfos=[
+    {
+        'name':'Bigyan',
+        'qualification':'MBBS',
+        'yoe':'14',
+
+    },
+
+    {
+
+        'name':'Bigyan 2',
+        'qualification':'MD',
+        'yoe':'20',
+    }
+]
+
+# def DoctorPage(Request):
+#     return HttpResponse("<h1> Doctors Page </h1>")
+
+def DoctorPage(request):
+    context={
+        'docinfos':docinfos
+    }
+    return render(request,'doctors/doctors.html')
+
+
+def about(request):
+    return render(request, 'about.html')
+

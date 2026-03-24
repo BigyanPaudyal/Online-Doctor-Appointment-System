@@ -1,14 +1,103 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
 {% block content %}
 
+<!-- HERO SECTION -->
 <div class="hero">
     <div class="overlay">
-        <h1>Welcome to Doctor's Appointment System</h1>
+        <h1>Welcome </h1>
+        <h3>to </h3>
+        <h1>Doctor's Appointment System</h1>
         <div class="line"></div>
         <button class="btn">FIND A DOCTOR</button>
     </div>
+</div>
+
+<!-- FEATURES SECTION -->
+<!-- PLATFORM BENEFITS SECTION -->
+<div class="features-container">
+    <h2 style="text-align:center; margin:40px 0;">Your Health, Simplified</h2>
+
+    <div class="feature-row">
+        <div class="feature-card">
+            <div class="icon">🕒</div>
+            <h3>24/7 Access</h3>
+            <p>Check doctor availability and book appointments anytime, day or night.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🌍</div>
+            <h3>Wide Coverage</h3>
+            <p>Find doctors from multiple specialties and locations across the country.</p>
+        </div>
+    </div>
+
+    <div class="feature-row">
+        <div class="feature-card">
+            <div class="icon">📲</div>
+            <h3>Easy Online Booking</h3>
+            <p>Book appointments directly from your phone or computer without hassle.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">💡</div>
+            <h3>Smart Reminders</h3>
+            <p>Get notifications and reminders so you never miss an appointment.</p>
+        </div>
+    </div>
+</div>
+<!-- HOW IT WORKS SECTION -->
+<!-- HOW IT WORKS SECTION: HORIZONTAL TIMELINE -->
+<div class="how-it-works">
+    <h2 style="text-align:center; margin:50px 0;">How It Works</h2>
+    <div class="timeline-container">
+
+        <!-- Step 1 -->
+        <div class="timeline-step">
+            <div class="step-icon">📝</div>
+            <h3>Create an Account</h3>
+            <p>Sign up quickly with your email or phone number to start using the platform.</p>
+        </div>
+
+        <div class="timeline-arrow">➡️</div>
+
+        <!-- Step 2 -->
+        <div class="timeline-step">
+            <div class="step-icon">🔍</div>
+            <h3>Search for a Doctor</h3>
+            <p>Browse doctors by specialty, location, or ratings to find the right one.</p>
+        </div>
+
+        <div class="timeline-arrow">➡️</div>
+
+        <!-- Step 3 -->
+        <div class="timeline-step">
+            <div class="step-icon">📅</div>
+            <h3>Book Your Appointment</h3>
+            <p>Pick a date and time and book your appointment online easily.</p>
+        </div>
+
+        <div class="timeline-arrow">➡️</div>
+
+        <!-- Step 4 -->
+        <div class="timeline-step">
+            <div class="step-icon">💻</div>
+            <h3>Visit or Consult Online</h3>
+            <p>Attend your appointment in person or consult online hassle-free.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- CALL TO ACTION -->
+<div class="cta-section" style="text-align:center; margin:60px 0;">
+    <h2>Ready to Book Your Appointment?</h2>
+    <a href="{% url 'signup' %}" class="btn">Create an Account</a>
 </div>
 
 {% endblock %}

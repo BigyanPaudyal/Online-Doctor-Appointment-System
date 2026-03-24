@@ -5,7 +5,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background: #555;
+    background-color: rgb(5, 47, 83);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -16,37 +16,54 @@ body {
     color: white;
     margin-left: 20px;
     text-decoration: none;
+    background-color: rgb(5, 47, 83);
 }
 
 /* Hero Section */
 .hero {
-    background: url('../images/bg.jpg') no-repeat center center/cover;
+    background: url('../images/last.jpg')  no-repeat center center/cover;
     height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 /* Overlay Box */
 .overlay {
-    background: rgba(0,0,0,0.4);
+    position: absolute;   /* key line */
+    top: 130px;               /* stick to top */
+    left: 34px;         /* stick to left */
+    color:rgb(0, 1, 2) ;
     padding: 40px;
     border-radius: 10px;
     text-align: center;
-    color: white;
+    /* color: white; */
 }
 
+.overlay h3 {
+    font-size: 24px;     /* small text */
+    font-weight: 400;
+    /* margin-bottom: 10px; */
+}
+
+.overlay h1 {
+    font-size: 48px;     /* big text */
+    font-weight: 700;
+    color: rgb(0, 46, 87);
+    /* margin: 0; */
+}
 /* Line under text */
 .line {
     width: 50px;
     height: 3px;
-    background: orange;
+    background: rgb(0, 0, 0);
     margin: 10px auto;
 }
 
 /* Button */
 .btn {
-    background: orange;
+    background: rgb(5, 47, 83);
     border: none;
     padding: 12px 25px;
     color: white;
@@ -85,7 +102,7 @@ body {
 .auth-box button {
     width: 100%;
     padding: 10px;
-    background: orange;
+    background: rgb(93, 173, 226);
     border: none;
     color: white;
     font-weight: bold;
@@ -95,12 +112,12 @@ body {
 
 /* Hover effect */
 .auth-box button:hover {
-    background: darkorange;
+    background: rgb(93, 173, 226);
 }
 
 /* Links */
 .auth-box a {
-    color: orange;
+    color: rgb(93, 173, 226);
     text-decoration: none;
 }
 
@@ -115,7 +132,7 @@ body {
 .circle {
     width: 35px;
     height: 35px;
-    background: orange;
+    background: rgb(93, 173, 226);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -134,3 +151,46 @@ body {
     padding: 10px;
     border-radius: 5px;
 }
+
+/* Profile menu */
+.profile-menu {
+    position: relative;
+}
+
+/* Circle */
+.circle {
+    width: 35px;
+    height: 35px;
+    background: rgb(93, 173, 226);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+/* Dropdown */
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    width: 150px;
+}
+
+.dropdown a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown a:hover {
+    background: #eee;
+}
+
