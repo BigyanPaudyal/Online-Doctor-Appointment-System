@@ -25,5 +25,7 @@ urlpatterns = [
     path('aboutus/',include('AboutUs.urls')),
     path('doctors/',include('doctors.urls')),
     path('hospitals/',include('hospitals.urls')),
+    # path('', include('appointments.urls')),
+    path('ranking/', include('ranking.urls')),
     
 ]
