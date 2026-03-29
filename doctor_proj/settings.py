@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'HomePage.apps.HomepageConfig',
     'appointment',
     'patients',
-    
+    'ranking',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     
 ]
 
