@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Doctor Detail{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'hospitals/doctor_details.css' %}">
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>{{ doctor.name }}</h2>
+
+        <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+        <p><strong>Qualification:</strong> {{ doctor.qualification }}</p>
+        <p><strong>Fees:</strong> Rs. {{ doctor.fees }}</p>
+        <p><strong>Phone:</strong> {{ doctor.phone }}</p>
+
+        {% if doctor.a_status %}
+            <p class="status available">Available</p>
+            <a href="/appointment/book/{{ doctor.doctor_id }}/" class="btn">Book Appointment</a>
+        {% else %}
+            <p class="status not-available">Not Available</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

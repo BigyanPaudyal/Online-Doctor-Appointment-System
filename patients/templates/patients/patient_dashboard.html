@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'patients/dashboard.css' %}">
+
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            alert("{{ message }}");
+        </script>
+    {% endfor %}
+{% endif %}
+
+<div class="container">
+
+    <h2>Welcome, {{ patient.name }}</h2>
+
+    <h3>Upcoming Appointments ({{ upcoming_count }})</h3>
+
+    {% if upcoming %}
+        {% for appt in upcoming %}
+            <a href="{% url 'appointment_detail' appt.appointment_id %}" class="card-link">
+                <div class="card">
+                    <p><strong>Doctor:</strong> {{ appt.doctor.name }}</p>
+                    <p><strong>Date:</strong> {{ appt.appointment_date }}</p>
+                    <p><strong>Time:</strong> {{ appt.appointment_time }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p class="empty">No upcoming appointments</p>
+    {% endif %}
+
+    <h3>Past Appointments</h3>
+
+    {% if past %}
+        {% for appt in past %}
+            <div class="card past">
+                <p><strong>Doctor:</strong> {{ appt.doctor.name }}</p>
+                <p><strong>Date:</strong> {{ appt.appointment_date }}</p>
+                <p><strong>Time:</strong> {{ appt.appointment_time }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty">No past appointments</p>
+    {% endif %}
+
+    <div class="actions">
+        <a href="{% url 'doctor_list' %}" class="btn">Book Appointment</a>
+    </div>
+
+</div>
+
+{% endblock %}

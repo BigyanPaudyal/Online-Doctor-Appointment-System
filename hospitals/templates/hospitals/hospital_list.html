@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Hospitals{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'hospitals/hospital_list.css' %}">
+
+<div class="container">
+
+    <a href="{% url 'home' %}" class="back-link">← Back to Home</a>
+
+    <h2>Hospitals</h2>
+
+    <form method="GET" class="search-form">
+        <input type="text" name="q" placeholder="Search hospitals..." value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="hospital-list">
+        {% for hospital in hospitals %}
+            <div class="card">
+
+                <a href="{% url 'hospital_detail' hospital.hospital_id %}" class="hospital-name">
+                    {{ hospital.name }}
+                </a>
+
+                <p class="address">{{ hospital.address }}</p>
+
+                <a href="{% url 'hospital_detail' hospital.hospital_id %}" class="view-btn">
+                    View Doctors →
+                </a>
+
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

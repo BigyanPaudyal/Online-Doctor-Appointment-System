@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book Appointment{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'book.css' %}">
+
+<div class="container">
+
+    <a href="{% url 'doctor_detail' doctor.doctor_id %}" class="back-link">← Back to Doctor</a>
+
+    <h2>Book Appointment with {{ doctor.name }}</h2>
+
+    <div class="card">
+        <form method="GET">
+            <label>Select Date</label>
+            <input type="date" name="date" min="{{ today }}" value="{{ selected_date }}" onchange="this.form.submit()" required>
+        </form>
+    </div>
+
+    {% if selected_date %}
+    <div class="card">
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="hidden" name="date" value="{{ selected_date }}">
+
+            <label>Available Time Slots</label>
+            <select name="time" required>
+                {% for slot in time_slots %}
+                    <option value="{{ slot }}">{{ slot }}</option>
+                {% empty %}
+                    <option disabled>No slots available</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

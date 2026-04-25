@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #0f2f4f;
+    padding: 15px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* 🔥 THIS FIXES YOUR ISSUE */
+.main {
+    margin-top: 70px;   /* space for navbar */
+}
+
+/* LINKS */
+.navbar a {
+    color: #cbd5e1;
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+/* HOVER */
+.navbar a:hover {
+    color: white;
+}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Hospital Detail{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'hospitals/hospital_detail.css' %}">
+
+<div class="container">
+
+    <a href="{% url 'hospital_list' %}" class="back-link">← Back to Hospitals</a>
+
+    <h2>{{ hospital.name }}</h2>
+    <p class="address">{{ hospital.address }}</p>
+
+    <div class="card">
+        <form method="GET" class="search-form">
+            <input type="text" name="search"
+                   placeholder="Search doctor name or specialization"
+                   value="{{ search }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <form method="GET" class="filter-form">
+            <select name="department">
+                <option value="">All Departments</option>
+
+                {% for dept in departments %}
+                    <option value="{{ dept.department_id }}"
+                        {% if dept_id == dept.department_id|stringformat:"s" %}selected{% endif %}>
+                        {{ dept.name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
+    <h3>Doctors in {{ hospital.name }}</h3>
+
+    <div class="doctor-list">
+        {% for doctor in doctors %}
+            <div class="card doctor-card">
+
+                <a href="{% url 'doctor_detail' doctor.doctor_id %}" class="doctor-name">
+                    {{ doctor.name }}
+                </a>
+
+                <p>{{ doctor.specialization }}</p>
+                <p class="dept">Department: {{ doctor.department.name }}</p>
+
+            </div>
+        {% empty %}
+            <p class="empty">No doctors found in this hospital</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

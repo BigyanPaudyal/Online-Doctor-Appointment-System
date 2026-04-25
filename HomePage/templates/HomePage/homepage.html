@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'HomePage/homepage.css' %}?v=2">
+{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Book a Doctor's Appointment</h1>
+        <p>Find trusted doctors</p>
+
+        <div class="hero-btns">
+            <button class="btn-primary">Find a Doctor</button>
+            <button class="btn-outline">Learn More</button>
+        </div>
+    </div>
+</div>
+
+
+{% if user.is_authenticated %}
+<div class="top-box">
+    <h3>You have {{ appointment_count }} upcoming appointment(s)</h3>
+    <a href="{% url 'upcoming_appointments' %}">View Appointments →</a>
+</div>
+{% endif %}
+
+<div class="section-header">
+    <h2>Doctors</h2>
+    <p>Browse our available doctors</p>
+</div>
+
+<div class="grid">
+    {% for doctor in doctors %}
+        <a class="card-link" href="{% url 'doctor_detail' doctor.doctor_id %}">
+            <div class="card">
+                <h4>{{ doctor.name }}</h4>
+                <p>{{ doctor.specialization }}</p>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+<div class="section-header">
+    <h2>Hospitals</h2>
+    <p>Find hospitals near you</p>
+</div>
+
+<div class="grid">
+    {% for hospital in hospitals %}
+        <a class="card-link" href="{% url 'hospital_detail' hospital.hospital_id %}">
+            <div class="card">
+                <h4>{{ hospital.name }}</h4>
+                <p>{{ hospital.location }}</p>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+<div class="cta">
+    <h2>Ready to book your appointment?</h2>
+    <a href="{% url 'register' %}" class="cta-btn">Create an Account</a>
+</div>
+
+<div class="footer">
+    &copy; 2026 Doctor's Appointment System. All rights reserved.
+</div>
+
+{% endblock %}

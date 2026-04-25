@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Upcoming Appointments{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'list.css' %}">
+
+<div class="container">
+
+    <h2>Your Upcoming Appointments</h2>
+
+    {% if appointments %}
+
+        <div class="appointment-list">
+
+        {% for appt in appointments %}
+            <div class="card">
+
+                <a href="{% url 'appointment_detail' appt.pk %}" class="card-link">
+
+                    <p><b>Doctor:</b> {{ appt.doctor.name }}</p>
+                    <p><b>Date:</b> {{ appt.appointment_date }}</p>
+                    <p><b>Time:</b> {{ appt.appointment_time }}</p>
+                    <p><b>Status:</b> {{ appt.status }}</p>
+
+                </a>
+
+                {% if appt.status != "cancelled" %}
+                    <form method="POST" action="{% url 'cancel_appointment' appt.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="cancel-btn">
+                            Cancel Appointment
+                        </button>
+                    </form>
+                {% else %}
+                    <p class="cancelled">Cancelled</p>
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+        </div>
+
+    {% else %}
+        <p class="empty">No upcoming appointments.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Success{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h2 id="msg">Processing...</h2>
+</div>
+
+<script>
+    window.onload = function () {
+        alert("Appointment booked successfully!");
+
+        document.getElementById("msg").innerText = "Redirecting to homepage...";
+
+        setTimeout(function () {
+            window.location.href = "/homepage/";
+        }, 2000);
+    };
+</script>
+
+{% endblock %}

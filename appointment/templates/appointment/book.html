@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book Appointment{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'book.css' %}">
+
+<div class="container">
+
+    <h2>Book Appointment</h2>
+
+    <div class="card">
+        <h3>Doctor: {{ doctor.name }}</h3>
+    </div>
+
+    <div class="card">
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Date</label>
+            <input type="date" id="appointment_date" name="appointment_date" required>
+
+            <label>Time</label>
+            <select name="appointment_time" id="time_slot" required>
+                <option value="">Select Time Slot</option>
+            </select>
+
+            <label>Reason for visit</label>
+            <textarea name="reason" required></textarea>
+
+            <button type="submit">Continue</button>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    const dateInput = document.getElementById("appointment_date");
+    const timeSelect = document.getElementById("time_slot");
+
+    const today = new Date();
+    const maxDate = new Date();
+    maxDate.setDate(today.getDate() + 14);
+
+    function formatDate(d) {
+        return d.toISOString().split("T")[0];
+    }
+
+    dateInput.min = formatDate(today);
+    dateInput.max = formatDate(maxDate);
+
+    dateInput.addEventListener("change", function () {
+        const selectedDate = new Date(this.value);
+        const day = selectedDate.getDay();
+
+        if (day === 6) {
+            alert("Hospitals are closed on Saturdays. Please choose another day.");
+            this.value = "";
+        }
+    });
+
+    function generateTimeSlots() {
+        timeSelect.innerHTML = '<option value="">Select Time Slot</option>';
+
+        let start = 9 * 60;
+        let end = 17 * 60;
+        let step = 10;
+
+        for (let minutes = start; minutes <= end; minutes += step) {
+            let hours = Math.floor(minutes / 60);
+            let mins = minutes % 60;
+
+            let formattedHour = hours.toString().padStart(2, '0');
+            let formattedMin = mins.toString().padStart(2, '0');
+
+            let time = `${formattedHour}:${formattedMin}`;
+
+            let option = document.createElement("option");
+            option.value = time;
+            option.textContent = time;
+
+            timeSelect.appendChild(option);
+        }
+    }
+
+    generateTimeSlots();
+</script>
+
+{% endblock %}

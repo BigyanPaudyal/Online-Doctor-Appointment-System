@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Doctors{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'hospitals/doctor.css' %}">
+
+<h2 class="page-title">Doctors</h2>
+
+<div class="filter-box">
+
+    <a href="{% url 'doctor_list' %}" class="btn black">
+        All Doctors
+    </a>
+
+    <a href="{% url 'doctor_list' %}?available=true" class="btn green">
+        Available Doctors
+    </a>
+
+</div>
+
+<div class="doctor-container">
+
+    {% for doctor in doctors %}
+
+        <a href="{% url 'doctor_detail' doctor.doctor_id %}" class="card-link">
+
+            <div class="doctor-card">
+
+                <h3>{{ doctor.name }}</h3>
+
+                <p>{{ doctor.specialization }}</p>
+
+                <p>{{ doctor.qualification }}</p>
+
+                {% if doctor.a_status %}
+                    <p class="status available">Available</p>
+                {% else %}
+                    <p class="status not">Not Available</p>
+                {% endif %}
+
+            </div>
+
+        </a>
+
+    {% empty %}
+        <p class="empty">No doctors found.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
